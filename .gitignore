@@ -1,0 +1,13 @@
+__pycache__
+data
+.ipynb_checkpoints
+.venv
+.vim
+.git
+models
+data_processing/data/
+predictions.csv
+optuna_database
+content
+tandf
+.mypy_cache
