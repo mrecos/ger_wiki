@@ -102,10 +102,7 @@ def get_leven(nom: List[str], cutoff: int):
     nom['chosen'] = nom.apply(lambda x: x['chosen']
                               if x['chosen'] == x['chosen']
                               else x['nom'], axis=1)
-    nom_dict = {}
-    for _, row in nom.iterrows():
-        nom_dict[row['nom']] = row['chosen']
-    return nom_dict
+    return {row['nom']: row['chosen'] for _, row in nom.iterrows()}
 
 
 nom = get_leven(nom, 90)
