@@ -11,3 +11,4 @@ optuna_database
 content
 tandf
 .mypy_cache
+ger_wiki.egg-info/

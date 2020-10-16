@@ -1,7 +1,7 @@
 {
     "data_loader": {
         "batch_sampler": {
-            "batch_size": 14,
+            "batch_size": 4,
             "type": "bucket"
         }
     },
@@ -35,9 +35,9 @@
         "optimizer": {
             "correct_bias": true,
             "eps": 1e-08,
-            "lr": 4.3712433375474325e-05,
+            "lr": 1.9000671753502963e-05,
             "type": "huggingface_adamw",
-            "weight_decay": 0.006384254184414281
+            "weight_decay": 0.061748150962771656
         },
         "patience": 8,
         "use_amp": true,

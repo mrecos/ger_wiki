@@ -80,10 +80,16 @@ def main(argv):
         )
 
     elif argv == ['1b']:
-        print("Training baseline model.")
+        print("Training baseline models.")
         train_model_from_file(
             parameter_filename='./configs/model_baseline.jsonnet',
             serialization_dir='./models/model_baseline/',
+            include_package=['ger_wiki', 'allennlp_models'],
+            force=True
+        )
+        train_model_from_file(
+            parameter_filename='./configs/wiki_baseline.jsonnet',
+            serialization_dir='./models/wiki_baseline/',
             include_package=['ger_wiki', 'allennlp_models'],
             force=True
         )

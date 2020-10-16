@@ -1,13 +1,9 @@
-import contextily as ctx
 import geopandas as gpd
-import geoplot
 import matplotlib.pyplot as plt
-import numpy as np
 import pandas as pd
 import streamlit as st
 from allennlp.data.dataset_readers.dataset_utils import bioul_tags_to_spans
 from allennlp.models.archival import load_archive
-from allennlp.predictors import Predictor
 from ger_wiki.predictor import TextPredictor
 from sklearn.cluster import dbscan
 
