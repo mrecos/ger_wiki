@@ -13,7 +13,8 @@ from ger_wiki.predictor import TextPredictor
 
 
 class RunBatchPredictions:
-    def __init__(self, archive_path: str,
+    def __init__(self,
+                 archive_path: str,
                  predictor_name: str,
                  text_path: str,
                  cuda_device: int,

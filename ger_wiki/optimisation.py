@@ -8,13 +8,15 @@ from optuna.pruners import HyperbandPruner
 
 
 class Optimiser:
-    def __init__(self, study_name: str,
+    def __init__(self,
+                 study_name: str,
                  archive: bool = False,
                  timeout: int = None):
         self.study_name = study_name
-        self.MODEL_PATH = './models/optuna_models/' + self.study_name
         self.timeout = timeout
         self.archive = archive
+
+        self.MODEL_PATH = './models/optuna_models/' + self.study_name
 
         self.study = optuna.create_study(
             study_name=self.study_name,
