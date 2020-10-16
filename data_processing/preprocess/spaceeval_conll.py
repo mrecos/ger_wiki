@@ -71,7 +71,11 @@ class SpaceConll:
         file_conll = list(zip(sent_tokens, sent_ents))
 
         for pair in file_conll:
-            if '\n' in pair[0] or '\u2002' in pair[0] or ' ' in pair[0]:
+            if '\n' in pair[0]:
+                file_conll.remove(pair)
+            elif '\u2002' in pair[0]:
+                file_conll.remove(pair)
+            elif ' ' in pair[0]:
                 file_conll.remove(pair)
         return file_conll
 
