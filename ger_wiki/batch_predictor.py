@@ -40,12 +40,9 @@ class RunBatchPredictions:
         # remove very short sentences that are likely incomplete
         csv = csv[csv['abs'].apply(lambda x: len(x) > 10)]
 
-        text = []
-        for _, row in csv.iterrows():
-            text.append({'sentence': row['abs'],
+        return [{'sentence': row['abs'],
                          'place': row['label'],
-                         'wiki_point': row['point']})
-        return text
+                         'wiki_point': row['point']} for _, row in csv.iterrows()]
 
     def run_batch_predictions(self, batch_size):
         chunks = (len(self.text) - 1) // batch_size + 1
