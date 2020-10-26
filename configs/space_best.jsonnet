@@ -18,7 +18,7 @@
     "model": {
         "calculate_span_f1": true,
         "constrain_crf_decoding": true,
-        "dropout": 0.31913870288813717,
+        "dropout": 0.7203112352716297,
         "encoder": {
             "input_dim": 768,
             "type": "pass_through"
@@ -53,9 +53,9 @@
         "optimizer": {
             "correct_bias": true,
             "eps": 1e-08,
-            "lr": 2.3133366914831007e-05,
+            "lr": 5.337987218028524e-05,
             "type": "huggingface_adamw",
-            "weight_decay": 0.03950638539067573
+            "weight_decay": 0.033600041141681095
         },
         "patience": 8,
         "use_amp": true,

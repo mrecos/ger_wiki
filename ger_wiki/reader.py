@@ -29,14 +29,10 @@ class GerReader(DatasetReader):
     def _read(self, file_path: str) -> Iterator[Instance]:
         with open(file_path, 'r') as conll_file:
             for divider, lines in itertools.groupby(conll_file, _is_divider):
-                # skip over any dividing lines
                 if divider:
                     continue
-                # get the CoNLL fields, each token is a list of fields
                 fields = [line.strip().split() for line in lines]
-                # switch it so that each field is a list of tokens/labels
                 fields = [line for line in zip(*fields)]
-                # only keep the tokens and NER labels
                 tokens, ner_tags = fields
                 yield self.text_to_instance(tokens, ner_tags)
 

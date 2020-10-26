@@ -1,13 +1,10 @@
+from multiprocessing import Pool, cpu_count
 from typing import List
 
-import geopandas as gpd
-import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import spacy
 from fuzzywuzzy import fuzz, process
-from sklearn.cluster import dbscan
-from multiprocessing import Pool, cpu_count
 
 
 def clean_data(input_file):
@@ -106,10 +103,8 @@ def get_leven(nom: List[str], cutoff: int):
 
 
 nom = get_leven(nom, 90)
-
 nom_places['place'] = nom_places['place'].apply(lambda x: nom[x])
 
 nom_places.to_csv("./data_processing/data/results/nom_places.csv", index=False)
-
 nam_places = wiki_place[(wiki_place['type'] == 'PLACE_NAM')]
 nam_places.to_csv("./data_processing/data/results/nam_places.csv", index=False)

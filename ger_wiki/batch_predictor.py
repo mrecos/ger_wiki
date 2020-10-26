@@ -1,13 +1,12 @@
 import os
 
-from typing import List
-from spacy.pipeline import Sentencizer
 import jsonlines
 import pandas as pd
+import spacy
 from allennlp.data.dataset_readers.dataset_utils import bioul_tags_to_spans
 from allennlp.models.archival import load_archive
+from spacy.pipeline import Sentencizer
 from tqdm import tqdm
-import spacy
 
 from ger_wiki.predictor import TextPredictor
 
@@ -42,8 +41,8 @@ class RunBatchPredictions:
         csv = csv[csv['abs'].apply(lambda x: len(x) > 10)]
 
         return [{'sentence': row['abs'],
-                         'place': row['label'],
-                         'wiki_point': row['point']} for _, row in csv.iterrows()]
+                 'place': row['label'],
+                 'wiki_point': row['point']} for _, row in csv.iterrows()]
 
     def run_batch_predictions(self, batch_size):
         chunks = (len(self.text) - 1) // batch_size + 1
@@ -69,7 +68,7 @@ class RunBatchPredictions:
         for batch in self.predictions:
             words = batch['words']
             spans = bioul_tags_to_spans(batch['tags'])
-            tags_list: List = []
+            tags_list = []
 
             for span in spans:
                 offsets = span[1]
@@ -85,6 +84,8 @@ class RunBatchPredictions:
                 tags_dataframe.columns = ['Place', 'Type',
                                           'Sentence', 'Place', 'wiki_point']
                 tags_dataframe.to_csv(
-                    csv_file, mode='a', header=False,
+                    csv_file,
+                    mode='a',
+                    header=False,
                     index=False
                 )

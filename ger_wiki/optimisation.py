@@ -1,5 +1,7 @@
 import csv
+import shutil
 from collections import OrderedDict
+from pathlib import Path
 
 import optuna
 import optuna.integration.allennlp
@@ -84,3 +86,7 @@ class Optimiser:
                          + self.study_name + "_history.csv",
                          mode='w',
                          index=False)
+
+    def delete_archives(self):
+        dir = Path(self.MODEL_PATH)
+        shutil.rmtree(dir)

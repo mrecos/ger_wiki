@@ -16,7 +16,7 @@
         "type": "ger_wiki.reader.GerReader"
     },
     "model": {
-        "archive_file": "./models/model_base/model.tar.gz",
+        "archive_file": "./models/wiki_best_model/model.tar.gz",
         "type": "from_archive"
     },
     "numpy_seed": 42,
@@ -35,9 +35,9 @@
         "optimizer": {
             "correct_bias": true,
             "eps": 1e-08,
-            "lr": 1.9000671753502963e-05,
+            "lr": 1.5699663443145e-05,
             "type": "huggingface_adamw",
-            "weight_decay": 0.061748150962771656
+            "weight_decay": 0.04574077464482654
         },
         "patience": 8,
         "use_amp": true,

@@ -37,8 +37,10 @@ def run_model(predictor, passage):
             place = ' '.join(passage_tokens[start:end+1])
             places.append(place)
 
-        passage_tokens[start:end+1] = ["**" + token + "**"
-                                       for token in passage_tokens[start:end+1]]
+        passage_tokens[start:end+1] = [
+            "**" + token + "**"
+            for token in passage_tokens[start:end+1]
+        ]
         passage_tokens[end] += " _<sub>" +\
             span[0].split("_")[1] +\
             "</sub>_"
@@ -51,12 +53,12 @@ def load_coord_data(places):
     geoname_columns = ['geonameid', 'name', 'asciiname',
                        'alternatenames', 'latitude', 'longitude',
                        'feature class', 'feature code', 'country code', 'cc2',
-                       'admin1 code', 'admin2 code', 'admin3 code', 'admin4 code',
-                       'population', 'elevation', 'dem', 'timezone',
-                       'modification date']
+                       'admin1 code', 'admin2 code', 'admin3 code',
+                       'admin4 code', 'population', 'elevation', 'dem',
+                       'timezone', 'modification date']
     geonames = pd.read_csv(geonames_file, sep='\t',
-                           header=None, names=geoname_columns).dropna()
-    geonames = geonames[['name', 'latitude', 'longitude']]
+                           header=None, names=geoname_columns)
+    geonames = geonames[['name', 'latitude', 'longitude']].dropna()
 
     wiki_file = "./data_processing/data/results/predictions.csv"
     wiki = pd.read_csv(
@@ -79,12 +81,12 @@ def load_coord_data(places):
         wiki_coords['place'] = place
 
         place_coords = place_coords.append(geonames_coords)
-        place_coords = place_coords.append(wiki_coords)
+        #place_coords = place_coords.append(wiki_coords)
     return place_coords
 
 
 st.header("Geographic Entity Recognition.")
-archive_path = "./models/model_fromarchive/model.tar.gz"
+archive_path = "./models/archive_best_model/model.tar.gz"
 passage = st.text_area(
     "sentence", "Headingley is a suburb of Leeds, West Yorkshire, England, approximately two miles out of the city centre, to the north west along the A660 road. Headingley is the location of the Beckett Park campus of Leeds Beckett University and Headingley Stadium."
 )

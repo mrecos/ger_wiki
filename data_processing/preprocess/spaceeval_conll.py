@@ -34,7 +34,7 @@ class SpaceConll:
                         fp.write('\n'.join(f'{x[0]} {x[1]}'
                                            for x in conll_formatted))
 
-    def spaceeval_to_conll(self, spaceeval_xml_file, nlp):
+    def spaceeval_to_conll(self, spaceeval_xml_file: str, nlp: str):
         """
         Convert ISO-Space formatted file to CoNLL format.
 
