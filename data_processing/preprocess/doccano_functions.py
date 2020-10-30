@@ -1,5 +1,6 @@
 import random
 
+
 import jsonlines
 import spacy
 from spacy.gold import biluo_tags_from_offsets, offsets_from_biluo_tags
@@ -8,7 +9,8 @@ from spacy.gold import biluo_tags_from_offsets, offsets_from_biluo_tags
 def split_text(input_file: str,
                large_file: str,
                sample_file: str,
-               sample: int):
+               sample: int,
+               seed: int):
     """
     Split a larger file into two by line by a proportion of the sample.
 
@@ -19,9 +21,12 @@ def split_text(input_file: str,
     :param sample_file str: Output for smaller split.
     :param sample int: Proportion to split large file by.
     """
+    random.seed(seed)
+
     text = set(open(input_file).readlines())
     subset = set(random.sample(text, sample))
     large_subset = text - subset
+
     open(large_file, 'w')\
         .write(''.join([line for line in large_subset]))
     open(sample_file, 'w')\

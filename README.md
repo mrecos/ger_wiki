@@ -14,10 +14,10 @@ This repository contains the workflow for extracting geographic entities from Wi
         - `data_processing/preprocess/doccano_functions.py`
     * Doccano used to manually verify and fix incorrect labels
 * Transformer model fine-tuned using labelled Wikipedia data 
-    - `configs/ger_transformer_fromarchive.jsonnet`
+    - `configs/archive_best.jsonnet`
 * Fine-tuned transformer model used to extract all mentions of place from corpus of 52,000 place descriptions 
     - `ger_wiki/batch_predictor.py`
 
 The data is not included as part of this repository but the ISO-Space corpus is available [here](http://alt.qcri.org/semeval2015/task8/index.php?id=data-and-tools) and the Wikipedia query may be ran to obtain place descriptions. Labelled place descriptions and extracted places will be made available in the future. This project hopes to capture mentions of place not normally found within gazetteers to inform future research.
 
-Tests may be ran by running `pytest` from the base directory of this project.
+Run `pytest` from the base directory of this project for tests.

@@ -1,21 +1,26 @@
 import warnings
 
 import jsonlines
-from conllu import parse
 from data_processing.preprocess import doccano_functions as df
+from pathlib import Path
 
 
 class TestDoccanoFunctions:
+    def __init__(self):
+        self.DIR = Path('./tests/fixtures')
+
     def test_split_text(self):
-        input_file = './tests/fixtures/split_text/toy_split.txt'
-        large_file = './tests/fixtures/split_text/toy_large.txt'
-        sample_file = './tests/fixtures/split_text/toy_sample.txt'
+        input_file = self.DIR / 'split_text/toy_split.txt'
+        large_file = self.DIR / 'split_text/toy_large.txt'
+        sample_file = self.DIR / 'split_text/toy_sample.txt'
         sample = 2
+        seed = 42
 
         df.split_text(input_file=input_file,
                       large_file=large_file,
                       sample_file=sample_file,
-                      sample=sample)
+                      sample=sample,
+                      seed=seed)
 
         toy_data_length = len(open(input_file).readlines())
         large_file_length = len(open(large_file).readlines())
@@ -26,8 +31,8 @@ class TestDoccanoFunctions:
         assert sample_file_length == sample
 
     def test_predictions_to_doccano(self):
-        input_file = './tests/fixtures/predictions_to_doccano/toy_predictions.jsonl'
-        output_file = './tests/fixtures/predictions_to_doccano/toy_doccano.jsonl'
+        input_file = self.DIR / 'predictions_to_doccano/toy_predictions.jsonl'
+        output_file = self.DIR / 'predictions_to_doccano/toy_doccano.jsonl'
 
         df.predictions_to_doccano(input_file=input_file,
                                   output_file=output_file)
@@ -53,8 +58,8 @@ class TestDoccanoFunctions:
         """
         One instance with no misaligned tags, and one with misalignments.
         """
-        input_file = './tests/fixtures/doccano_to_conll/toy_doccano.jsonl'
-        output_file = './tests/fixtures/doccano_to_conll/toy_conll.conll'
+        input_file = self.DIR / 'doccano_to_conll/toy_doccano.jsonl'
+        output_file = self.DIR / 'doccano_to_conll/toy_conll.conll'
 
         with warnings.catch_warnings(record=True) as w:
             df.doccano_to_conll(input_file=input_file,
