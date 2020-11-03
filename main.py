@@ -1,16 +1,16 @@
 #!/usr/bin/env python
-import typer
 import logging
 
+import typer
 from allennlp.commands.train import train_model_from_file
 
 from ger_wiki.batch_predictor import RunBatchPredictions
 from ger_wiki.optimisation import Optimiser
 
 logging.getLogger('allennlp.common.params').disabled = True
+logging.getLogger('allennlp.common.util').disabled = True
 logging.getLogger('allennlp.nn.initializers').disabled = True
-logging.getLogger('allennlp.modules.token_embedders.embedding')\
-    .setLevel(logging.INFO)
+logging.getLogger('allennlp.modules.token_embedders.embedding').disabled = True
 logging.getLogger('urllib3.connectionpool').disabled = True
 
 app = typer.Typer()
