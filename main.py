@@ -15,11 +15,6 @@ logging.getLogger('urllib3.connectionpool').disabled = True
 
 app = typer.Typer()
 
-# suitable choices
-# integrate into -h
-models = ['space', 'wiki', 'archive']
-optuna_models = [f'{model}_optuna' for model in models]
-
 
 def optuna_model(name: str):
     archive = name == 'archive'
@@ -45,9 +40,8 @@ def train_model(name: str):
             include_package=['ger_wiki', 'allennlp_models'],
             force=True
         )
-    except FileNotFoundError:
-        print(f"{name}.jsonnet not found! Run {name} --optimise first." +
-              " Or use --baseline.")
+    except FileNotFoundError as e:
+        print(e)
 
 
 def get_predictions(name: str):
@@ -67,31 +61,46 @@ def get_predictions(name: str):
     )
 
 
-def main(name,
+def create_predictions():
+    batch_predictor = RunBatchPredictions(
+        archive_path='./models/space_model/model.tar.gz',
+        predictor_name='text_predictor',
+        text_path='./data_processing/data/interim/wiki/predict.csv',
+        cuda_device=0
+    )
+    batch_predictor.run_batch_predictions(batch_size=8)
+    batch_predictor.write_json(
+        json_file='./data_processing/data/interim/wiki/predictions.jsonl'
+    )
+
+
+def main(name: str,
+         baseline: bool = False,
          optimise: bool = False,
          predict: bool = False,
-         baseline: bool = False):
+         create_pseudo: bool = False):
+    """
+    Choose an NER model to train, or use model predictor.
+
+    By default trains the chosen model using best config, generated
+    through --optimise
+
+    :param name str: Name from space, wiki, archive\n
+    :param baseline bool: Train baseline model\n
+    :param optimise bool: Optimise using optuna\n
+    :param predict bool: Label Wikipedia corpus using predictor\n
+    :param create_pseudo bool: Create pseudo labels using predictor\n
+    """
     if optimise:
         optuna_model(name)
     elif predict:
         get_predictions(name)
+    elif create_pseudo:
+        create_predictions()
     else:
         name += "_baseline" if baseline else "_best"
         train_model(name)
 
 
-#     elif argv == ['labels']:
-#         print("Create Doccano pseudo labels.")
-#         # run predictions on Wikipedia corpus using second model
-#         RunBatchPredictions(
-#             archive_path='./models/model_base/model.tar.gz',
-#             predictor_name='text_predictor',
-#             text_path='./data_processing/data/interim/wiki/predict.csv',
-#             cuda_device=0
-#         )
-#         batch_predictor.run_batch_predictions(batch_size=8)
-#         batch_predictor.write_json(
-#             json_file='./data_processing/data/interim/wiki/predictions.jsonl',
-#         )
 if __name__ == '__main__':
     typer.run(main)

@@ -31,7 +31,7 @@ class RunBatchPredictions:
         self.text = self.read_lines(text_path)
 
     def read_lines(self, text_path):
-        csv = pd.read_csv(text_path, index_col=0)
+        csv: pd.DataFrame = pd.read_csv(text_path, index_col=0)
         # very simple sentencizer (spacy far too slow)
         csv['abs'] = csv['abs']\
             .str.split('\. ')

@@ -35,6 +35,10 @@ class TextPredictor(SentenceTaggerPredictor):
         self._nlp.add_pipe(sentencizer)
 
     @overrides
+    def predict(self, sentence: str) -> JsonDict:
+        return self.predict_json({"sentence": sentence})
+
+    @overrides
     def load_line(self, line: str) -> JsonDict:
         """
         Processes strings into sentences from text, rather than JSON-lines.

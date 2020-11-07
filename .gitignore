@@ -9,7 +9,7 @@ data_processing/data/
 predictions.csv
 optuna_database
 content
-tandf
+paper
 .mypy_cache
 ger_wiki.egg-info/
 poetry.lock
