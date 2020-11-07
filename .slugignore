@@ -1,3 +1,6 @@
-data_processing
-optuna_database
+data_processing/
+configs/
+optuna_database/
+docker/
+paper/
 .venv
