@@ -42,7 +42,7 @@ local grad_norm = 1.0;
     },
     "model": {
          "type": "from_archive",
-         "archive_file": "./models/wiki_best_model/model.tar.gz"
+         "archive_file": "./models/space_best_model/model.tar.gz"
     },
     "trainer": {
         "cuda_device": 0,

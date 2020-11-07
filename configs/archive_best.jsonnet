@@ -16,7 +16,7 @@
         "type": "ger_wiki.reader.GerReader"
     },
     "model": {
-        "archive_file": "./models/wiki_best_model/model.tar.gz",
+        "archive_file": "./models/space_best_model/model.tar.gz",
         "type": "from_archive"
     },
     "numpy_seed": 42,
