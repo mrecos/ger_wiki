@@ -1,4 +1,0 @@
-torch==1.7.0
-allennlp==1.2.0
-streamlit==0.67.1
-ger_wiki.egg==info

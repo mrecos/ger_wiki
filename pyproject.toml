@@ -40,7 +40,6 @@ ptpython = "^3.0.7"
 mypy = "^0.790"
 sourcery-cli = "^0.8.1"
 typer = "^0.3.2"
-pipreqs = "^0.4.10"
 
 [build-system]
 requires = ["poetry>=0.12"]
