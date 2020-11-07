@@ -1,6 +1,9 @@
-data_processing/
-configs/
-optuna_database/
-docker/
-paper/
+/data_processing
+/configs
+/optuna_database
+/docker
+/models
+/paper
+/tests
+paper
 .venv
