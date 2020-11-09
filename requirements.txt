@@ -1,0 +1,3 @@
+allennlp==1.2.0
+allennlp-models==1.2.0
+streamlit==0.67.1
