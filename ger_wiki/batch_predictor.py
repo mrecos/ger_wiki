@@ -1,4 +1,5 @@
 import os
+import re
 
 import jsonlines
 import pandas as pd
@@ -74,6 +75,10 @@ class RunBatchPredictions:
                 offsets = span[1]
                 label = span[0]
                 word = ' '.join(words[offsets[0]: offsets[1]+1])
+                # fix apostrophes and dashes
+                word = re.sub(r'\s([\'])', r'\1', word)
+                word = re.sub(r'\s([-])\s', r'\1', word)
+
                 tags_list.append((word, label,
                                   batch['sentence'],
                                   batch['place'],

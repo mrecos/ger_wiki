@@ -35,10 +35,6 @@ class TextPredictor(SentenceTaggerPredictor):
         self._nlp.add_pipe(sentencizer)
 
     @overrides
-    def predict(self, sentence: str) -> JsonDict:
-        return self.predict_json({"sentence": sentence})
-
-    @overrides
     def load_line(self, line: str) -> JsonDict:
         """
         Processes strings into sentences from text, rather than JSON-lines.
@@ -111,20 +107,3 @@ class TextPredictor(SentenceTaggerPredictor):
             output['wiki_point'] = next(wiki_points)
 
         return sanitize(outputs)
-
-    @overrides
-    def predict_batch_json(self, inputs: List[JsonDict]) -> List[JsonDict]:
-        """
-        kept for debugging
-        """
-        instances = self._batch_json_to_instances(inputs)
-        return self.predict_batch_instance(instances)
-
-    @overrides
-    def _batch_json_to_instances(
-            self,
-            json_dicts: List[JsonDict]) -> List[Instance]:
-        """
-        kept for debugging
-        """
-        return [self._json_to_instance(json_dict) for json_dict in json_dicts]

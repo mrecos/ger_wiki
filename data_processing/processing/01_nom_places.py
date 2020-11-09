@@ -106,5 +106,3 @@ nom = get_leven(nom, 90)
 nom_places['place'] = nom_places['place'].apply(lambda x: nom[x])
 
 nom_places.to_csv("./data_processing/data/results/nom_places.csv", index=False)
-nam_places = wiki_place[(wiki_place['type'] == 'PLACE_NAM')]
-nam_places.to_csv("./data_processing/data/results/nam_places.csv", index=False)

@@ -7,7 +7,7 @@ from allennlp.data.fields import (Field, MetadataField, SequenceLabelField,
 from allennlp.data.instance import Instance
 from allennlp.data.token_indexers import SingleIdTokenIndexer, TokenIndexer
 from allennlp.data.tokenizers import Token
-from allennlp_models.tagging.models import CrfTagger
+from allennlp_models.tagging.models import CrfTagger  # noqa: F401
 from overrides import overrides
 
 
@@ -46,7 +46,7 @@ class GerReader(DatasetReader):
         metadata_dict: Dict[str, Any] = {}
         fields: Dict[str, Field] = {}
 
-        text_field = TextField([w for w in words], self._token_indexers)
+        text_field = TextField([Token(w) for w in words], self._token_indexers)
 
         # only include tags if present
         if ner_tags:

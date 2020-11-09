@@ -51,6 +51,9 @@ def clean_abs(csv):
     csv['abs'] = csv['abs'].str.replace(r'\(.*\)', '')
     csv['abs'] = csv['abs'].str.replace(r'\(|\)', '')
     csv['abs'] = csv['abs'].str.encode('ascii', 'ignore').str.decode('ascii')
+    csv['abs'] = csv['abs'].str.replace('St.', 'Saint', regex=False)
     # removes double spaces
     csv['abs'] = csv['abs'].str.split().str.join(' ')
+    # remove south georgia
+    csv = csv[~csv['abs'].str.contains('South Georgia')]
     return csv

@@ -1,10 +1,12 @@
-import re
-import torch
 import logging
+import re
+
 import streamlit as st
+import torch
 from allennlp.data.dataset_readers.dataset_utils import bioul_tags_to_spans
-from ger_wiki.predictor import TextPredictor
 from allennlp.models.archival import load_archive
+
+from ger_wiki.predictor import TextPredictor
 
 logging.getLogger('allennlp.common.params').disabled = True
 logging.getLogger('allennlp.common.util').disabled = True
@@ -18,13 +20,13 @@ ARCHIVE_PATH = "https://ger-wiki.s3.eu-west-2.amazonaws.com/model.tar.gz"
 @st.cache(allow_output_mutation=True)
 def load_predictor(archive_path):
     archive = load_archive(archive_path)
-    predictor = TextPredictor.from_archive(archive)
+    predictor = TextPredictor.from_archive(archive,
+                                           predictor_name='text_predictor')
     predictor.cuda_device = 0 if torch.cuda.is_available() else -1
     return predictor
 
 
 def run_model(predictor, passage):
-    predictor.predict(passage)
     result = predictor.predict(passage)
     spans = bioul_tags_to_spans(result['tags'])
 
