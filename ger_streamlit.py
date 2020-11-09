@@ -59,7 +59,7 @@ def run_model(predictor, passage):
     return passage_tokens, places
 
 
-st.header("Geographic Entity Recognition.")
+st.header("Geographic Entity Recognition")
 
 passage = st.text_area(
     "sentence", "Headingley is a suburb of Leeds, West Yorkshire, England, approximately two miles out of the city centre, to the north west along the A660 road. Headingley is the location of the Beckett Park campus of Leeds Beckett University and Headingley Stadium."
