@@ -7,6 +7,7 @@ from allennlp.data.dataset_readers.dataset_utils import bioul_tags_to_spans
 from allennlp.models.archival import load_archive
 
 from ger_wiki.predictor import TextPredictor
+from ger_wiki.reader import GerReader  # noqa: F401
 
 logging.getLogger('allennlp.common.params').disabled = True
 logging.getLogger('allennlp.common.util').disabled = True
