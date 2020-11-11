@@ -25,8 +25,6 @@ A live demo is available at https://share.streamlit.io/cjber/ger_wiki/ger_stream
 
 SpaceEval data is not included as part of this repository but the corpus is available [here](http://alt.qcri.org/semeval2015/task8/index.php?id=data-and-tools). The Wikipedia query may be ran to obtain place descriptions. The manually labelled Wikipedia data is included in this repository for the training of the `wiki` NER model.
 
-This project hopes to capture mentions of place not normally found within gazetteers to inform future research.
-
 ## Reproduce Results
 
 ### Wikipedia NER Model
