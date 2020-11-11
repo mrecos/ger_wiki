@@ -2,7 +2,7 @@
 
 This repository contains code for extracting geographic entities from Wikipedia descriptions of places within the United Kingdom. The project centres around an NER transformer model using the python package [AllenNLP](https://allennlp.org) with integrates with [Optuna](https://optuna.org/) to automate the hyperparameter search. [Poetry](https://python-poetry.org/) is used for the virtual environment and dependency control. Manual labelling was assisted through the text annotation tool [Doccano](https://doccano.herokuapp.com/). 
 
-A live demo is available at https://share.streamlit.io/cjber/ger_wiki/ger_streamlit.io.
+A live demo is available at https://share.streamlit.io/cjber/ger_wiki/ger_streamlit.py.
 
 ## Workflow
 
