@@ -8,8 +8,9 @@ A live demo is available at https://share.streamlit.io/cjber/ger_wiki/ger_stream
 
 * Labelled SpaceEval corpus converted to CoNLL format keeping only **PATH** and **PLACE** entities
     - `data_processing/preprocess/spaceeval_conll.py`
-* Roberta transformer model with Optuna optimisation fine-tuned using this data 
-    - `configs/ger_transformer.jsonnet`
+* RoBERTa transformer model with Optuna optimisation fine-tuned using this data 
+    - `configs/space_optuna.jsonnet`
+    - `configs/space_best.jsonnet`
 * DBPedia queried to obtain place descriptions within the UK 
     - `data_processing/preprocess/dbpedia_query.py`
     - Preliminary entity tags generated using transformer model predictions 
@@ -41,7 +42,7 @@ NOTE: Running this model will download a ~500mb model archive.
 
 If you want to replicate the dataset of geographic entities mentioned on Wikipedia place articles:
 
-* Run `python ./data_processing/d1_base_process.py` NOTE: This will likely produce an error due to missing SpaceEval data but will still create the Wikipedia data.
+* Run `python ./data_processing/d1_base_process.py` This will likely produce an error due to missing SpaceEval data but will still create the Wikipedia data.
 * Run `python main.py wiki --predict`
 
 ## Unit Testing
