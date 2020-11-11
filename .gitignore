@@ -5,7 +5,10 @@ data
 .vim
 .git
 models
-data_processing/data/
+data_processing/data/interim
+data_processing/data/raw
+data_processing/data/results
+data_processing/data/processed/spaceeval_*
 predictions.csv
 optuna_database
 content

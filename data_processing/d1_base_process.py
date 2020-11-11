@@ -1,7 +1,5 @@
 """
-This section does not need to be run more than once. It converts the ISO-Space
-data to CoNLL format and queries Wikipedia creating an overall dataset and 200
-article subset for pseudo labels.
+Create Wikipedia place dataset
 """
 from data_processing.preprocess.spaceeval_conll import SpaceConll
 from data_processing.preprocess.dbpedia_query import run_query, clean_abs
