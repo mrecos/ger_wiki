@@ -26,9 +26,9 @@ SpaceEval data is not included as part of this repository but the corpus is avai
 
 This project hopes to capture mentions of place not normally found within gazetteers to inform future research.
 
-# Reproduce Results
+## Reproduce Results
 
-## Wikipedia NER Model
+### Wikipedia NER Model
 
 Labelled Wikipedia data is included in this repository and may be used to train the NER model presented to reproduce the results of this study.
 
@@ -44,6 +44,6 @@ If you want to replicate the dataset of geographic entities mentioned on Wikiped
 * Run `python ./data_processing/d1_base_process.py` NOTE: This will likely produce an error due to missing SpaceEval data but will still create the Wikipedia data.
 * Run `python main.py wiki --predict`
 
-# Unit Testing
+## Unit Testing
 
 Run `pytest` from the base directory of this project for tests.
