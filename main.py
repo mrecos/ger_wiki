@@ -9,11 +9,9 @@ app = typer.Typer()
 
 
 def optuna_model(name: str):
-    archive = name == 'archive'
     typer.echo(f"Running Optuna {name}")
     optimiser = Optimiser(study_name=f'optuna_{name}',
-                          timeout=60*60*10,
-                          archive=archive)
+                          timeout=60*60*10)
     optimiser.run_optimisation(
         config_file=f'./configs/{name}_optuna.jsonnet',
         best_output=f"./configs/{name}_best.jsonnet",
@@ -77,7 +75,7 @@ def main(name: str,
     By default trains the chosen model using best config, generated
     through --optimise
 
-    :param name str: Name from space, wiki, archive\n
+    :param name str: Name from space or wiki\n
     :param baseline bool: Train baseline model\n
     :param optimise bool: Optimise using optuna\n
     :param predict bool: Label Wikipedia corpus using predictor\n

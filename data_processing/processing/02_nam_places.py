@@ -31,5 +31,7 @@ new_places = set(wiki_place_unq) - set(geonames_unq)
 
 new_places = wiki_place[wiki_place['place'].isin(new_places)]
 
-new_counts = new_places['place'].value_counts().to_frame()
+new_counts = wiki_place['place'].value_counts().to_frame().reset_index()
+new_counts = new_counts[new_counts['index'].isin(new_places)]
+
 new_counts.to_csv("./data_processing/data/results/out_of_gazetteer.csv")

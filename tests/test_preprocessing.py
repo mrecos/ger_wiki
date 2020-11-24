@@ -4,15 +4,14 @@ import jsonlines
 from data_processing.preprocess import doccano_functions as df
 from pathlib import Path
 
+DIR = Path('./tests/fixtures')
+
 
 class TestDoccanoFunctions:
-    def __init__(self):
-        self.DIR = Path('./tests/fixtures')
-
     def test_split_text(self):
-        input_file = self.DIR / 'split_text/toy_split.txt'
-        large_file = self.DIR / 'split_text/toy_large.txt'
-        sample_file = self.DIR / 'split_text/toy_sample.txt'
+        input_file = DIR / 'split_text/toy_split.txt'
+        large_file = DIR / 'split_text/toy_large.txt'
+        sample_file = DIR / 'split_text/toy_sample.txt'
         sample = 2
         seed = 42
 
@@ -31,8 +30,8 @@ class TestDoccanoFunctions:
         assert sample_file_length == sample
 
     def test_predictions_to_doccano(self):
-        input_file = self.DIR / 'predictions_to_doccano/toy_predictions.jsonl'
-        output_file = self.DIR / 'predictions_to_doccano/toy_doccano.jsonl'
+        input_file = DIR / 'predictions_to_doccano/toy_predictions.jsonl'
+        output_file = DIR / 'predictions_to_doccano/toy_doccano.jsonl'
 
         df.predictions_to_doccano(input_file=input_file,
                                   output_file=output_file)
@@ -58,8 +57,8 @@ class TestDoccanoFunctions:
         """
         One instance with no misaligned tags, and one with misalignments.
         """
-        input_file = self.DIR / 'doccano_to_conll/toy_doccano.jsonl'
-        output_file = self.DIR / 'doccano_to_conll/toy_conll.conll'
+        input_file = DIR / 'doccano_to_conll/toy_doccano.jsonl'
+        output_file = DIR / 'doccano_to_conll/toy_conll.conll'
 
         with warnings.catch_warnings(record=True) as w:
             df.doccano_to_conll(input_file=input_file,

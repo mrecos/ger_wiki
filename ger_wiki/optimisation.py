@@ -12,11 +12,9 @@ from optuna.pruners import HyperbandPruner
 class Optimiser:
     def __init__(self,
                  study_name: str,
-                 archive: bool = False,
                  timeout: int = None):
         self.study_name = study_name
         self.timeout = timeout
-        self.archive = archive
 
         self.MODEL_PATH = './models/optuna_models/' + self.study_name
 
@@ -33,9 +31,7 @@ class Optimiser:
         trial.suggest_float('lr', 1e-6, 1e-4)
         trial.suggest_categorical('batch_size', [4, 8, 14])
         trial.suggest_float('weight_decay', 0.0, 0.1)
-
-        if not self.archive:
-            trial.suggest_float('dropout', 0.0, 0.8)
+        trial.suggest_float('dropout', 0.0, 0.8)
 
         executor = optuna.integration.allennlp.AllenNLPExecutor(
             trial=trial,
