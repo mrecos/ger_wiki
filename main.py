@@ -40,6 +40,7 @@ def get_predictions(name: str):
         archive_path=f'./models/{name}_best_model/model.tar.gz',
         predictor_name='text_predictor',
         text_path='./data_processing/data/raw/wiki/wiki_info.csv',
+        text_col='abs',
         cuda_device=0
     )
     batch_predictor.run_batch_predictions(batch_size=8)
@@ -56,6 +57,7 @@ def create_predictions():
         archive_path='./models/space_model/model.tar.gz',
         predictor_name='text_predictor',
         text_path='./data_processing/data/interim/wiki/predict.csv',
+        text_col='abs',
         cuda_device=0
     )
     batch_predictor.run_batch_predictions(batch_size=8)

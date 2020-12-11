@@ -8,7 +8,7 @@ local epochs = 50;
 local seed = 42;
 
 # optimisable parameters
-local lr = 5e-5;
+local lr = 1e-5;
 local batch_size = 8;
 local weight_decay = 0.01;
 local dropout = 0;
@@ -69,6 +69,7 @@ local grad_norm = 1.0;
           "type": "huggingface_adamw",
           "lr": lr,
           "weight_decay": weight_decay,
+          "parameter_groups": [[["bias", "LayerNorm\\.weight", "layer_norm\\.weight"], {"weight_decay": 0}]],
           "correct_bias": true,
           "eps": eps
         },
