@@ -1,7 +1,7 @@
 {
     "data_loader": {
         "batch_sampler": {
-            "batch_size": 8,
+            "batch_size": 4,
             "type": "bucket"
         }
     },
@@ -18,7 +18,7 @@
     "model": {
         "calculate_span_f1": true,
         "constrain_crf_decoding": true,
-        "dropout": 0.3986393181991736,
+        "dropout": 0.7468960355297328,
         "encoder": {
             "input_dim": 768,
             "type": "pass_through"
@@ -53,9 +53,21 @@
         "optimizer": {
             "correct_bias": true,
             "eps": 1e-08,
-            "lr": 4.532387717732831e-05,
+            "lr": 2.0628136881300094e-05,
+            "parameter_groups": [
+                [
+                    [
+                        "bias",
+                        "LayerNorm\\.weight",
+                        "layer_norm\\.weight"
+                    ],
+                    {
+                        "weight_decay": 0
+                    }
+                ]
+            ],
             "type": "huggingface_adamw",
-            "weight_decay": 0.03470271342120573
+            "weight_decay": 0.0728017171431615
         },
         "patience": 8,
         "use_amp": true,
